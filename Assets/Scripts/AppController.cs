@@ -13,10 +13,25 @@ namespace Assets.Scripts
                     {
                         VideoAdPlayer.Instance.PlayAd(ad.url);
                     },
-                () =>
+                (string err) =>
                     {
-                        Debug.LogWarning("Ad request failed");
+                        Debug.LogWarning("Video ad request failed: " + err);
                     }
+            );
+        }
+
+        public void PlayItemAd()
+        {
+            ItemAdLoader.Instance.LoadAd
+            (
+                (ItemAdInfo ad) =>
+                {
+                    Debug.Log(ad.title);
+                },
+                (string err) =>
+                {
+                    Debug.LogWarning("Item ad request failed: " + err);
+                }
             );
         }
     }
