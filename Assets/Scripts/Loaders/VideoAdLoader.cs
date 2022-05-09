@@ -3,22 +3,22 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class VideoAdController : Singleton<VideoAdController>
+public class VideoAdLoader : Singleton<VideoAdLoader>
 {
     public string url;
 
-    public void LoadData(Action<VideoAd> success, Action error) {
+    public void LoadAd(Action<VideoAdInfo> success, Action error) {
         StartCoroutine(RunRequest(success, error));
     }
 
-    private IEnumerator RunRequest(Action<VideoAd> success, Action error)
+    private IEnumerator RunRequest(Action<VideoAdInfo> success, Action error)
     {
         UnityWebRequest uwr = UnityWebRequest.Get(url);
         yield return uwr.SendWebRequest();
 
         if (uwr.result == UnityWebRequest.Result.Success)
         {
-            success(VideoAd.FromXML(uwr.downloadHandler.text));
+            success(VideoAdInfo.FromXML(uwr.downloadHandler.text));
         }
         else
         {

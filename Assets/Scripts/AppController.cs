@@ -7,9 +7,9 @@ namespace Assets.Scripts
     {
         public void PlayVideoAd()
         {
-            VideoAdController.Instance.LoadData
+            VideoAdLoader.Instance.LoadAd
             (
-                (VideoAd ad) =>
+                (VideoAdInfo ad) =>
                     {
                         VideoAdPlayer.Instance.PlayAd(ad.url);
                     },

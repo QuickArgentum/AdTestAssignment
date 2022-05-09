@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 1997216671}
   - component: {fileID: 1997216672}
   m_Layer: 0
-  m_Name: VideoAdController
+  m_Name: VideoAdLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
