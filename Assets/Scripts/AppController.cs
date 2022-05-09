@@ -11,7 +11,7 @@ namespace Assets.Scripts
             (
                 (VideoAd ad) =>
                     {
-                        Debug.Log(ad.url);
+                        VideoAdPlayer.Instance.PlayAd(ad.url);
                     },
                 () =>
                     {
