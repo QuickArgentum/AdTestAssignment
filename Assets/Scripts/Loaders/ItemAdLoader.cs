@@ -54,7 +54,7 @@ public class ItemAdLoader : Singleton<ItemAdLoader>
 
                 result.title = response.title;
                 result.subtitle = response.item_name;
-                result.priceText = string.Format("{0} {1}", response.currency_sign, response.price);
+                result.priceText = string.Format("{0} {1}", response.currency_sign, response.price.ToString("0.00"));
 
                 success(result);
             }
