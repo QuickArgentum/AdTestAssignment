@@ -6,6 +6,8 @@ using UnityEngine.Video;
 public class VideoAdPlayer : Singleton<VideoAdPlayer>
 {
     public event EventHandler PlaybackCompleted;
+    public event EventHandler PrepareCompleted;
+    public event EventHandler PlaybackError;
 
     public VideoPlayer player;
     public GameObject panel;
@@ -17,6 +19,7 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
     {
         player.loopPointReached += OnPlaybackCompleted;
         player.prepareCompleted += OnPrepareCompleted;
+        player.errorReceived += OnError;
 
         fader.FadeOutCompleted += (object sender, EventArgs e) =>
         {
@@ -28,7 +31,7 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
     public void PlayAd(string url)
     {
         fader.gameObject.SetActive(true);
-        fader.FadeIn();
+        fader.Hide();
         image.enabled = false;
 
         player.url = url;
@@ -42,6 +45,10 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
 
         image.texture = texture;
         ratioFitter.aspectRatio = (float)texture.width / (float)texture.height;
+
+        PrepareCompleted?.Invoke(this, null);
+        
+        fader.FadeIn();
         player.Play();
     }
 
@@ -49,5 +56,16 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
     {
         fader.FadeOut();
         PlaybackCompleted?.Invoke(this, null);
+    }
+
+    private void OnError(VideoPlayer source, string message)
+    {
+        fader.gameObject.SetActive(false);
+        PlaybackError?.Invoke(this, new VideoAdErrorEventArgs { Message = message });
+    }
+
+    public class VideoAdErrorEventArgs : EventArgs
+    {
+        public string Message { get; set; }
     }
 }

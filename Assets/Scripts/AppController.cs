@@ -29,6 +29,14 @@ public class AppController : Singleton<AppController>
         {
             StartButtonPanel.Instance.Unlock();
         };
+        VideoAdPlayer.Instance.PrepareCompleted += (object sender, EventArgs e) =>
+        {
+            LoadingOverlay.Remove();
+        };
+        VideoAdPlayer.Instance.PlaybackError += (object sender, EventArgs e) =>
+        {
+            ShowError((e as VideoAdPlayer.VideoAdErrorEventArgs).Message);
+        };
     }
 
     public void PurchaseItem(ItemAdPurchaseInfo data)
@@ -59,7 +67,6 @@ public class AppController : Singleton<AppController>
             (VideoAdInfo ad) =>
             {
                 VideoAdPlayer.Instance.PlayAd(ad.url);
-                LoadingOverlay.Remove();
             },
             (string err) =>
             {

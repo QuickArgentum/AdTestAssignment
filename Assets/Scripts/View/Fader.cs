@@ -34,4 +34,9 @@ public class Fader : MonoBehaviour
     {
         FadeOutCompleted?.Invoke(this, null);
     }
+
+    public void Hide()
+    {
+        GetComponent<CanvasGroup>().alpha = 0;
+    }
 }
