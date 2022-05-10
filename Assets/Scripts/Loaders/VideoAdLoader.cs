@@ -18,7 +18,19 @@ public class VideoAdLoader : Singleton<VideoAdLoader>
         yield return uwr.SendWebRequest();
 
         if (uwr.result == UnityWebRequest.Result.Success)
+        {
+            VideoAdInfo result;
+            try
+            {
+                result = VideoAdInfo.FromXML(uwr.downloadHandler.text);
+            }
+            catch (Exception)
+            {
+                error(Strings.ERROR_RESPONSE);
+                yield break;
+            }
             success(VideoAdInfo.FromXML(uwr.downloadHandler.text));
+        }
         else
             error(uwr.error);
     }

@@ -10,6 +10,9 @@ public class VideoAdInfo
         document.LoadXml(data);
         XmlNode node = document.SelectSingleNode("//MediaFile");
 
-        return new VideoAdInfo { url = node?.InnerText };
+        if (node == null)
+            throw new System.Exception();
+
+        return new VideoAdInfo { url = node.InnerText };
     }
 }

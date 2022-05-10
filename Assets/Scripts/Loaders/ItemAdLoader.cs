@@ -23,17 +23,23 @@ public class ItemAdLoader : Singleton<ItemAdLoader>
 
     private IEnumerator RunAdRequest(Action<ItemAdInfo> success, Action<string> error)
     {
-        UnityWebRequest uwr = new UnityWebRequest(adUrl, UnityWebRequest.kHttpVerbPOST);
-        uwr.SetRequestHeader("Content-Type", "application/json");
-        uwr.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes("{}"));
-        uwr.downloadHandler = new DownloadHandlerBuffer();
+        UnityWebRequest uwr = LoaderUtil.CreateRequest(adUrl, UnityWebRequest.kHttpVerbPOST, "{}");
         yield return uwr.SendWebRequest();
 
         if (uwr.result != UnityWebRequest.Result.Success)
             error(uwr.error);
         else
         {
-            ItemAdRawResponseInfo response = LoaderUtil.ResponseFromJSON<ItemAdRawResponseInfo>(uwr);
+            ItemAdRawResponseInfo response;
+            try
+            {
+                response = LoaderUtil.ResponseFromJSON<ItemAdRawResponseInfo>(uwr);
+            }
+            catch (Exception)
+            {
+                error(Strings.ERROR_RESPONSE);
+                yield break;
+            }
 
             if (response.status != "Success")
                 error(response.error_code.ToString());
@@ -63,24 +69,28 @@ public class ItemAdLoader : Singleton<ItemAdLoader>
 
     private IEnumerator RunPurchaseRequest(ItemAdPurchaseInfo data, Action<string> success, Action<string> error)
     {
-        UnityWebRequest uwr = new UnityWebRequest(purchaseUrl, UnityWebRequest.kHttpVerbPOST);
-        uwr.SetRequestHeader("Content-Type", "application/json");
-        uwr.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(JsonUtility.ToJson(data)));
-        uwr.downloadHandler = new DownloadHandlerBuffer();
+        UnityWebRequest uwr = LoaderUtil.CreateRequest(purchaseUrl, UnityWebRequest.kHttpVerbPOST, JsonUtility.ToJson(data));
         yield return uwr.SendWebRequest();
 
         if (uwr.result != UnityWebRequest.Result.Success)
             error(uwr.error);
         else
         {
-            ItemPurchaseRawResponseInfo response = LoaderUtil.ResponseFromJSON<ItemPurchaseRawResponseInfo>(uwr);
+            ItemPurchaseRawResponseInfo response;
+            try
+            {
+                response = LoaderUtil.ResponseFromJSON<ItemPurchaseRawResponseInfo>(uwr);
+            }
+                catch (Exception)
+            {
+                error(Strings.ERROR_RESPONSE);
+                yield break;
+            }
 
             if (response.status != "Success")
                 error(response.error_code.ToString());
             else
-            {
                 success(response.user_message);
-            }
         }
     }
 }

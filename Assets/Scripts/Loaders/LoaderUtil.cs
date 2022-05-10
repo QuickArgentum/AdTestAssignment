@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -11,5 +12,18 @@ public static class LoaderUtil
         string text = uwr.downloadHandler.text.Replace("\'", "\"");
 
         return JsonUtility.FromJson<T>(text);
+    }
+
+    public static UnityWebRequest CreateRequest(string url, string type, string body = null)
+    {
+        UnityWebRequest uwr = new UnityWebRequest(url, type);
+        uwr.downloadHandler = new DownloadHandlerBuffer();
+        if (type == UnityWebRequest.kHttpVerbPOST)
+        {
+            uwr.SetRequestHeader("Content-Type", "application/json");
+            uwr.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(body));
+        }
+
+        return uwr;
     }
 }
