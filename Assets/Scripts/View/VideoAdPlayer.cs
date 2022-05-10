@@ -7,28 +7,28 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
 {
     public event EventHandler PlaybackCompleted;
 
-    private VideoPlayer player;
-    private GameObject panel;
-    private RawImage image;
-    private AspectRatioFitter ratioFitter;
+    public VideoPlayer player;
+    public GameObject panel;
+    public RawImage image;
+    public AspectRatioFitter ratioFitter;
+    public Fader fader;
 
     private void Start()
     {
-        Transform content = transform.Find("Panel/VideoContainer/VideoContent");
-        player = content.GetComponent<VideoPlayer>();
         player.loopPointReached += OnPlaybackCompleted;
         player.prepareCompleted += OnPrepareCompleted;
 
-        image = content.GetComponent<RawImage>();
-        ratioFitter = content.GetComponent<AspectRatioFitter>();
-        panel = transform.Find("Panel").gameObject;
-
-        panel.SetActive(false);
+        fader.FadeOutCompleted += (object sender, EventArgs e) =>
+        {
+            fader.gameObject.SetActive(false);
+        };
+        fader.gameObject.SetActive(false);
     }
 
     public void PlayAd(string url)
     {
-        panel.SetActive(true);
+        fader.gameObject.SetActive(true);
+        fader.FadeIn();
         image.enabled = false;
 
         player.url = url;
@@ -47,7 +47,7 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
 
     private void OnPlaybackCompleted(VideoPlayer player)
     {
-        panel.SetActive(false);
+        fader.FadeOut();
         PlaybackCompleted?.Invoke(this, null);
     }
 }

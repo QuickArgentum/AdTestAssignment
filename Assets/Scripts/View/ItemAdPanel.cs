@@ -5,15 +5,18 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
     public event EventHandler PlaceOrderClicked;
     public event EventHandler Closed;
 
-    private ItemAdItemDisplay itemDisplay;
-    private ItemAdPurchaseForm purchaseForm;
+    public ItemAdItemDisplay itemDisplay;
+    public ItemAdPurchaseForm purchaseForm;
+    public Fader fader;
 
     void Start()
     {
-        itemDisplay = GetComponentInChildren<ItemAdItemDisplay>(true);
-        purchaseForm = GetComponentInChildren<ItemAdPurchaseForm>(true);
-
-        Close();
+        fader.FadeOutCompleted += (object sender, EventArgs e) =>
+        {
+            fader.gameObject.SetActive(false);
+            Closed?.Invoke(this, null);
+        };
+        fader.gameObject.SetActive(false);
 
         itemDisplay.CancelClicked += (object sender, EventArgs e) =>
         {
@@ -21,14 +24,12 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
         };
         itemDisplay.PurchaseClicked += (object sender, EventArgs e) =>
         {
-            itemDisplay.gameObject.SetActive(false);
-            purchaseForm.gameObject.SetActive(true);
+            SwitchToDisplayPage(false);
         };
 
         purchaseForm.CancelClicked += (object sender, EventArgs e) =>
         {
-            itemDisplay.gameObject.SetActive(true);
-            purchaseForm.gameObject.SetActive(false);
+            SwitchToDisplayPage(true);
         };
         purchaseForm.ConfirmClicked += OnPurchaseClicked;
     }
@@ -41,16 +42,22 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
 
     public void Show(ItemAdInfo data)
     {
-        itemDisplay.gameObject.SetActive(true);
+        fader.gameObject.SetActive(true);
+        fader.FadeIn();
+
+        SwitchToDisplayPage(true);
         itemDisplay.SetData(data);
     }
 
     public void Close()
     {
-        itemDisplay.gameObject.SetActive(false);
-        purchaseForm.gameObject.SetActive(false);
+        fader.FadeOut();
+    }
 
-        Closed?.Invoke(this, null);
+    private void SwitchToDisplayPage(bool value)
+    {
+        itemDisplay.gameObject.SetActive(value);
+        purchaseForm.gameObject.SetActive(!value);
     }
 
     public class PurchaseEventArgs : EventArgs
