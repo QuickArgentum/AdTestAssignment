@@ -39,6 +39,6 @@ public class ItemAdItemDisplay : MonoBehaviour
         else
             image.texture = data.texture;
 
-        imageFitter.aspectRatio = (float)data.texture.width / (float)data.texture.height;
+        imageFitter.aspectRatio = (float)image.texture.width / (float)image.texture.height;
     }
 }
