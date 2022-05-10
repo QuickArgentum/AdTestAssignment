@@ -8,16 +8,13 @@ public class Fader : MonoBehaviour
     public event EventHandler FadeOutCompleted;
 
     public Animation anim;
+
+    private float fadeOutTime;
  
     void Start()
     {
         AnimationClip clip = anim.GetClip(Animations.FADE_OUT);
-
-        AnimationEvent evt = new AnimationEvent();
-        evt.time = clip.averageDuration;
-        evt.functionName = "OnFadeOutCompleted";
-
-        clip.AddEvent(evt);
+        fadeOutTime = clip.length;
     }
 
     public void FadeIn()
@@ -28,6 +25,14 @@ public class Fader : MonoBehaviour
     public void FadeOut()
     {
         anim.Play(Animations.FADE_OUT);
+        StartCoroutine(FadeOutTimer());
+    }
+
+    private IEnumerator FadeOutTimer()
+    {
+        yield return new WaitForSeconds(fadeOutTime);
+
+        OnFadeOutCompleted();
     }
 
     public void OnFadeOutCompleted()
