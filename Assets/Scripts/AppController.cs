@@ -20,12 +20,12 @@ public class AppController : Singleton<AppController>
             data,
             (string message) =>
             {
-                Debug.Log(message);
+                MessageBox.ShowSuccess(message);
                 ItemAdPanel.Instance.Close();
             },
             (string err) =>
             {
-                Debug.LogWarning("Purchase item request failed: " + err);
+                MessageBox.ShowError(err);
                 ItemAdPanel.Instance.Close();
             }
         );
@@ -41,7 +41,7 @@ public class AppController : Singleton<AppController>
                 },
             (string err) =>
                 {
-                    Debug.LogWarning("Video ad request failed: " + err);
+                    MessageBox.ShowError(err);
                 }
         );
     }
@@ -56,7 +56,7 @@ public class AppController : Singleton<AppController>
             },
             (string err) =>
             {
-                Debug.LogWarning("Item ad request failed: " + err);
+                MessageBox.ShowError(err);
             }
         );
     }
