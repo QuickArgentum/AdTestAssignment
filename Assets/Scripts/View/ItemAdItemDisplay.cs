@@ -4,15 +4,16 @@ using UnityEngine.UI;
 
 public class ItemAdItemDisplay : MonoBehaviour
 {
+    public event EventHandler PurchaseClicked;
+    public event EventHandler CancelClicked;
+
     public Text title;
     public Text subtitle;
     public RawImage image;
+    public AspectRatioFitter imageFitter;
     public Text priceLabel;
     public Button purchaseButton;
     public Button cancelButton;
-
-    public event EventHandler PurchaseClicked;
-    public event EventHandler CancelClicked;
 
     void Start()
     {
@@ -32,5 +33,7 @@ public class ItemAdItemDisplay : MonoBehaviour
         subtitle.text = data.subtitle;
         image.texture = data.texture;
         priceLabel.text = data.priceText;
+
+        imageFitter.aspectRatio = (float)data.texture.width / (float)data.texture.height;
     }
 }

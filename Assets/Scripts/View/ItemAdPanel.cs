@@ -12,8 +12,7 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
         itemDisplay = GetComponentInChildren<ItemAdItemDisplay>(true);
         purchaseForm = GetComponentInChildren<ItemAdPurchaseForm>(true);
 
-        itemDisplay.gameObject.SetActive(false);
-        purchaseForm.gameObject.SetActive(false);
+        Close();
 
         itemDisplay.CancelClicked += (object sender, EventArgs e) =>
         {
@@ -48,6 +47,7 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
     public void Close()
     {
         itemDisplay.gameObject.SetActive(false);
+        purchaseForm.gameObject.SetActive(false);
     }
 
     public class PurchaseEventArgs : EventArgs
