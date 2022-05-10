@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class MessageBox : Singleton<MessageBox>
@@ -7,13 +8,19 @@ public class MessageBox : Singleton<MessageBox>
     public Text message;
     public Button button;
     public GameObject body;
+    public Fader fader;
 
     private void Start()
     {
         button.onClick.AddListener(() =>
         {
-            body.SetActive(false);
+            fader.FadeOut();
         });
+        fader.FadeOutCompleted += (object sender, EventArgs e) =>
+        {
+            fader.gameObject.SetActive(false);
+        };
+        fader.gameObject.SetActive(false);
     }
 
     public void SetData(string title, string message)
@@ -24,7 +31,8 @@ public class MessageBox : Singleton<MessageBox>
 
     private static void Show(string title, string message)
     {
-        Instance.body.SetActive(true);
+        Instance.fader.gameObject.SetActive(true);
+        Instance.fader.FadeIn();
         Instance.SetData(title, message);
     }
 

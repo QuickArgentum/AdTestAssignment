@@ -1690,6 +1690,7 @@ MonoBehaviour:
   message: {fileID: 371489897}
   button: {fileID: 767502157}
   body: {fileID: 1909791998}
+  fader: {fileID: 1909792002}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4582,6 +4583,9 @@ GameObject:
   - component: {fileID: 1909791999}
   - component: {fileID: 1909792001}
   - component: {fileID: 1909792000}
+  - component: {fileID: 1909792004}
+  - component: {fileID: 1909792003}
+  - component: {fileID: 1909792002}
   m_Layer: 5
   m_Name: Body
   m_TagString: Untagged
@@ -4649,6 +4653,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909791998}
   m_CullTransparentMesh: 1
+--- !u!114 &1909792002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909791998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f14992a00844f1439f98fcd6ccd6c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1909792003}
+--- !u!111 &1909792003
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909791998}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: d7e5e4239d673344aad982050e4cf399, type: 2}
+  - {fileID: 7400000, guid: 2db75b0acbc88c84c9952caa4c5261e4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &1909792004
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909791998}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1920574799
 GameObject:
   m_ObjectHideFlags: 0
