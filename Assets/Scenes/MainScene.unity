@@ -3347,6 +3347,8 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: d7e5e4239d673344aad982050e4cf399, type: 2}
   - {fileID: 7400000, guid: 2db75b0acbc88c84c9952caa4c5261e4, type: 2}
+  - {fileID: 7400000, guid: 8518a7898fc5cd14bb1540f7b6407dc3, type: 2}
+  - {fileID: 7400000, guid: 37465c62b9d55074d8d3184dccbd7963, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -3569,6 +3571,7 @@ MonoBehaviour:
   itemDisplay: {fileID: 2045697192}
   purchaseForm: {fileID: 944645268}
   fader: {fileID: 1211757640}
+  flipAnimation: {fileID: 1211757641}
 --- !u!1 &1531255439
 GameObject:
   m_ObjectHideFlags: 0

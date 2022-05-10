@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class ItemAdPanel : Singleton<ItemAdPanel>
 {
@@ -8,6 +9,7 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
     public ItemAdItemDisplay itemDisplay;
     public ItemAdPurchaseForm purchaseForm;
     public Fader fader;
+    public Animation flipAnimation;
 
     void Start()
     {
@@ -24,12 +26,12 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
         };
         itemDisplay.PurchaseClicked += (object sender, EventArgs e) =>
         {
-            SwitchToDisplayPage(false);
+            flipAnimation.Play(Animations.ITEM_AD_TO_PURCHASE);
         };
 
         purchaseForm.CancelClicked += (object sender, EventArgs e) =>
         {
-            SwitchToDisplayPage(true);
+            flipAnimation.Play(Animations.ITEM_AD_TO_DISPLAY);
         };
         purchaseForm.ConfirmClicked += OnPurchaseClicked;
     }

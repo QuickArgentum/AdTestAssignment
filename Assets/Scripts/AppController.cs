@@ -45,8 +45,7 @@ public class AppController : Singleton<AppController>
             },
             (string err) =>
             {
-                MessageBox.ShowError(err);
-                LoadingOverlay.Remove();
+                ShowError(err);
                 ItemAdPanel.Instance.Close();
             }
         );
@@ -58,15 +57,14 @@ public class AppController : Singleton<AppController>
         VideoAdLoader.Instance.LoadAd
         (
             (VideoAdInfo ad) =>
-                {
-                    VideoAdPlayer.Instance.PlayAd(ad.url);
-                    LoadingOverlay.Remove();
-                },
+            {
+                VideoAdPlayer.Instance.PlayAd(ad.url);
+                LoadingOverlay.Remove();
+            },
             (string err) =>
-                {
-                    MessageBox.ShowError(err);
-                    LoadingOverlay.Remove();
-                }
+            {
+                ShowError(err);
+            }
         );
     }
 
@@ -82,10 +80,16 @@ public class AppController : Singleton<AppController>
             },
             (string err) =>
             {
-                MessageBox.ShowError(err);
-                LoadingOverlay.Remove();
+                ShowError(err);
             }
         );
+    }
+
+    private void ShowError(string message)
+    {
+        MessageBox.ShowError(message);
+        LoadingOverlay.Remove();
+        StartButtonPanel.Instance.Unlock();
     }
 
     private void Lock()
