@@ -3,6 +3,7 @@
 public class ItemAdPanel : Singleton<ItemAdPanel>
 {
     public event EventHandler PlaceOrderClicked;
+    public event EventHandler Closed;
 
     private ItemAdItemDisplay itemDisplay;
     private ItemAdPurchaseForm purchaseForm;
@@ -16,7 +17,7 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
 
         itemDisplay.CancelClicked += (object sender, EventArgs e) =>
         {
-            itemDisplay.gameObject.SetActive(false);
+            Close();
         };
         itemDisplay.PurchaseClicked += (object sender, EventArgs e) =>
         {
@@ -48,6 +49,8 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
     {
         itemDisplay.gameObject.SetActive(false);
         purchaseForm.gameObject.SetActive(false);
+
+        Closed?.Invoke(this, null);
     }
 
     public class PurchaseEventArgs : EventArgs

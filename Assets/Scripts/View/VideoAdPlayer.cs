@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class VideoAdPlayer : Singleton<VideoAdPlayer>
 {
+    public event EventHandler PlaybackCompleted;
+
     private VideoPlayer player;
     private GameObject panel;
     private RawImage image;
@@ -45,5 +48,6 @@ public class VideoAdPlayer : Singleton<VideoAdPlayer>
     private void OnPlaybackCompleted(VideoPlayer player)
     {
         panel.SetActive(false);
+        PlaybackCompleted?.Invoke(this, null);
     }
 }

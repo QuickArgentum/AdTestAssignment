@@ -7,15 +7,33 @@ public class AppController : Singleton<AppController>
 {
     private void Start()
     {
+        StartButtonPanel.Instance.VideoAdClicked += (object sender, EventArgs e) =>
+        {
+            PlayVideoAd();
+        };
+        StartButtonPanel.Instance.ItemAdClicked += (object sender, EventArgs e) =>
+        {
+            PlayItemAd();
+        };
+
         ItemAdPanel.Instance.PlaceOrderClicked += (object sender, EventArgs e) =>
         {
             PurchaseItem((e as ItemAdPanel.PurchaseEventArgs).PurchaseInfo);
+        };
+        ItemAdPanel.Instance.Closed += (object sender, EventArgs e) =>
+        {
+            StartButtonPanel.Instance.Unlock();
+        };
+
+        VideoAdPlayer.Instance.PlaybackCompleted += (object sender, EventArgs e) =>
+        {
+            StartButtonPanel.Instance.Unlock();
         };
     }
 
     public void PurchaseItem(ItemAdPurchaseInfo data)
     {
-        LoadingOverlay.Show();
+        Lock();
         ItemAdLoader.Instance.PurchaseItem
         (
             data,
@@ -36,7 +54,7 @@ public class AppController : Singleton<AppController>
 
     public void PlayVideoAd()
     {
-        LoadingOverlay.Show();
+        Lock();
         VideoAdLoader.Instance.LoadAd
         (
             (VideoAdInfo ad) =>
@@ -54,7 +72,7 @@ public class AppController : Singleton<AppController>
 
     public void PlayItemAd()
     {
-        LoadingOverlay.Show();
+        Lock();
         ItemAdLoader.Instance.LoadAd
         (
             (ItemAdInfo ad) =>
@@ -68,5 +86,11 @@ public class AppController : Singleton<AppController>
                 LoadingOverlay.Remove();
             }
         );
+    }
+
+    private void Lock()
+    {
+        LoadingOverlay.Show();
+        StartButtonPanel.Instance.Lock();
     }
 }
