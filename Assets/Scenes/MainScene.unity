@@ -5192,6 +5192,7 @@ MonoBehaviour:
   priceLabel: {fileID: 1685884842}
   purchaseButton: {fileID: 1606038895}
   cancelButton: {fileID: 1134704187}
+  defaultTexture: {fileID: 2800000, guid: f10d90e95e49b6946a620743b76d039f, type: 3}
 --- !u!114 &2045697193
 MonoBehaviour:
   m_ObjectHideFlags: 0

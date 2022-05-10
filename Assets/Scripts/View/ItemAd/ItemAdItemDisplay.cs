@@ -14,6 +14,7 @@ public class ItemAdItemDisplay : MonoBehaviour
     public Text priceLabel;
     public Button purchaseButton;
     public Button cancelButton;
+    public Texture defaultTexture;
 
     void Start()
     {
@@ -31,8 +32,12 @@ public class ItemAdItemDisplay : MonoBehaviour
     {
         title.text = data.title;
         subtitle.text = data.subtitle;
-        image.texture = data.texture;
         priceLabel.text = data.priceText;
+
+        if (data.useDefaultTexture)
+            image.texture = defaultTexture;
+        else
+            image.texture = data.texture;
 
         imageFitter.aspectRatio = (float)data.texture.width / (float)data.texture.height;
     }
