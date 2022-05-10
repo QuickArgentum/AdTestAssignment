@@ -937,6 +937,8 @@ GameObject:
   - component: {fileID: 256322682}
   - component: {fileID: 256322681}
   - component: {fileID: 256322680}
+  - component: {fileID: 256322683}
+  - component: {fileID: 256322684}
   m_Layer: 5
   m_Name: ExpirationYearInputField
   m_TagString: Untagged
@@ -1068,6 +1070,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256322678}
   m_CullTransparentMesh: 1
+--- !u!111 &256322683
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256322678}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &256322684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256322678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe92636ba67999429f092a56c4eda39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 256322680}
+  anim: {fileID: 256322683}
+  verifier: 3
+  length: 2
 --- !u!1 &280082894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1820,8 @@ GameObject:
   - component: {fileID: 521251332}
   - component: {fileID: 521251331}
   - component: {fileID: 521251330}
+  - component: {fileID: 521251333}
+  - component: {fileID: 521251334}
   m_Layer: 5
   m_Name: EmailInputField
   m_TagString: Untagged
@@ -1918,6 +1954,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521251328}
   m_CullTransparentMesh: 1
+--- !u!111 &521251333
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521251328}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &521251334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521251328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe92636ba67999429f092a56c4eda39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 521251330}
+  anim: {fileID: 521251333}
+  verifier: 1
+  length: 0
 --- !u!1 &702005633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &944645267
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2426,10 +2494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5e5b6cca09b034ab1545614fbe321d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailInput: {fileID: 521251330}
-  cardInput: {fileID: 1211396425}
-  expirationMonthInput: {fileID: 1184087009}
-  expirationYearInput: {fileID: 256322680}
+  emailInput: {fileID: 521251334}
+  cardInput: {fileID: 1211396429}
+  expirationMonthInput: {fileID: 1184087014}
+  expirationYearInput: {fileID: 256322684}
   purchaseButton: {fileID: 88970238}
   cancelButton: {fileID: 299913391}
 --- !u!114 &944645269
@@ -3006,6 +3074,8 @@ GameObject:
   - component: {fileID: 1184087011}
   - component: {fileID: 1184087010}
   - component: {fileID: 1184087009}
+  - component: {fileID: 1184087013}
+  - component: {fileID: 1184087014}
   m_Layer: 5
   m_Name: ExpirationMonthInputField
   m_TagString: Untagged
@@ -3137,6 +3207,38 @@ RectTransform:
   m_AnchoredPosition: {x: -130, y: -70}
   m_SizeDelta: {x: 80, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!111 &1184087013
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184087008}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1184087014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184087008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe92636ba67999429f092a56c4eda39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 1184087009}
+  anim: {fileID: 1184087013}
+  verifier: 2
+  length: 1
 --- !u!1 &1211396423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,6 +3251,8 @@ GameObject:
   - component: {fileID: 1211396427}
   - component: {fileID: 1211396426}
   - component: {fileID: 1211396425}
+  - component: {fileID: 1211396428}
+  - component: {fileID: 1211396429}
   m_Layer: 5
   m_Name: CardInputField
   m_TagString: Untagged
@@ -3281,6 +3385,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211396423}
   m_CullTransparentMesh: 1
+--- !u!111 &1211396428
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211396423}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 67c2c667fa4593a4da3158a580e9af8f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1211396429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211396423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe92636ba67999429f092a56c4eda39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  field: {fileID: 1211396425}
+  anim: {fileID: 1211396428}
+  verifier: 3
+  length: 16
 --- !u!1 &1211757638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,7 +4975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2045697191
 RectTransform:
   m_ObjectHideFlags: 0

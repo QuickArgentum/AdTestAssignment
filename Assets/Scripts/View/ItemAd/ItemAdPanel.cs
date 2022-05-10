@@ -38,8 +38,7 @@ public class ItemAdPanel : Singleton<ItemAdPanel>
 
     private void OnPurchaseClicked(object sender, EventArgs e)
     {
-        PurchaseEventArgs data = new PurchaseEventArgs { PurchaseInfo = purchaseForm.CreateData() };
-        PlaceOrderClicked.Invoke(this, data);
+        PlaceOrderClicked.Invoke(this, e);
     }
 
     public void Show(ItemAdInfo data)
