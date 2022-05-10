@@ -4174,7 +4174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58ab671aec4c9b409c7e886a1088ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://6u3td6zfza.execute-api.us-east-2.amazonaws.com/prod/v1/gcom/ad
+  adUrl: https://6u3td6zfza.execute-api.us-east-2.amazonaws.com/prod/v1/gcom/ad
+  purchaseUrl: https://6u3td6zfza.execute-api.us-east-2.amazonaws.com/prod/v1/gcom/action
 --- !u!1 &2135957442
 GameObject:
   m_ObjectHideFlags: 0

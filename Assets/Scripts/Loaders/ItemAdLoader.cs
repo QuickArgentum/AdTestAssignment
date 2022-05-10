@@ -7,16 +7,23 @@ using UnityEngine.Networking;
 public class ItemAdLoader : Singleton<ItemAdLoader>
 {
     [TextArea]
-    public string url;
+    public string adUrl;
+    [TextArea]
+    public string purchaseUrl;
 
     public void LoadAd(Action<ItemAdInfo> success, Action<string> error)
     {
-        StartCoroutine(RunRequest(success, error));
+        StartCoroutine(RunAdRequest(success, error));
     }
 
-    private IEnumerator RunRequest(Action<ItemAdInfo> success, Action<string> error)
+    public void PurchaseItem(ItemAdPurchaseInfo data, Action<string> success, Action<string> error)
     {
-        UnityWebRequest uwr = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
+        StartCoroutine(RunPurchaseRequest(data, success, error));
+    }
+
+    private IEnumerator RunAdRequest(Action<ItemAdInfo> success, Action<string> error)
+    {
+        UnityWebRequest uwr = new UnityWebRequest(adUrl, UnityWebRequest.kHttpVerbPOST);
         uwr.SetRequestHeader("Content-Type", "application/json");
         uwr.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes("{}"));
         uwr.downloadHandler = new DownloadHandlerBuffer();
@@ -26,11 +33,7 @@ public class ItemAdLoader : Singleton<ItemAdLoader>
             error(uwr.error);
         else
         {
-            // For whatever reason the API return JSON with single quotes which violates the JSON format and
-            // makes Unity's JsonUtility throw en error. So we replace the single quotes whith double ones
-            string text = uwr.downloadHandler.text.Replace("\'", "\"");
-
-            ItemAdRawResponseInfo response = JsonUtility.FromJson<ItemAdRawResponseInfo>(text);
+            ItemAdRawResponseInfo response = LoaderUtil.ResponseFromJSON<ItemAdRawResponseInfo>(uwr);
 
             if (response.status != "Success")
                 error(response.error_code.ToString());
@@ -54,6 +57,29 @@ public class ItemAdLoader : Singleton<ItemAdLoader>
                 result.priceText = string.Format("{0} {1}", response.currency_sign, response.price);
 
                 success(result);
+            }
+        }
+    }
+
+    private IEnumerator RunPurchaseRequest(ItemAdPurchaseInfo data, Action<string> success, Action<string> error)
+    {
+        UnityWebRequest uwr = new UnityWebRequest(purchaseUrl, UnityWebRequest.kHttpVerbPOST);
+        uwr.SetRequestHeader("Content-Type", "application/json");
+        uwr.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(JsonUtility.ToJson(data)));
+        uwr.downloadHandler = new DownloadHandlerBuffer();
+        yield return uwr.SendWebRequest();
+
+        if (uwr.result != UnityWebRequest.Result.Success)
+            error(uwr.error);
+        else
+        {
+            ItemPurchaseRawResponseInfo response = LoaderUtil.ResponseFromJSON<ItemPurchaseRawResponseInfo>(uwr);
+
+            if (response.status != "Success")
+                error(response.error_code.ToString());
+            else
+            {
+                success(response.user_message);
             }
         }
     }

@@ -9,9 +9,26 @@ public class AppController : Singleton<AppController>
     {
         ItemAdPanel.Instance.PlaceOrderClicked += (object sender, EventArgs e) =>
         {
-            Debug.Log("Purchasing an item!");
-            ItemAdPanel.Instance.Close();
+            PurchaseItem((e as ItemAdPanel.PurchaseEventArgs).PurchaseInfo);
         };
+    }
+
+    public void PurchaseItem(ItemAdPurchaseInfo data)
+    {
+        ItemAdLoader.Instance.PurchaseItem
+        (
+            data,
+            (string message) =>
+            {
+                Debug.Log(message);
+                ItemAdPanel.Instance.Close();
+            },
+            (string err) =>
+            {
+                Debug.LogWarning("Purchase item request failed: " + err);
+                ItemAdPanel.Instance.Close();
+            }
+        );
     }
 
     public void PlayVideoAd()
