@@ -13,6 +13,11 @@ public class ItemAdInputField : MonoBehaviour
     public Verifier verifier;
     public int length = 0;
 
+    void Start()
+    {
+        field.onValidateInput += ValidateInput;
+    }
+
     public bool Verify()
     {
         bool isValid = IsTextValid();
@@ -35,18 +40,29 @@ public class ItemAdInputField : MonoBehaviour
                 try
                 {
                     int value = int.Parse(text);
-                    return value <= 12;
+                    return value > 0 && value <= 12;
                 } catch (Exception)
                 {
                     return false;
                 }
 
-            case Verifier.LENGTH:
+            case Verifier.YEAR:
                 return text.Length >= length;
 
             default:
                 return false;
         }
+    }
+
+    private char ValidateInput(string text, int charIndex, char addedChar)
+    {
+        if (verifier == Verifier.MONTH || verifier == Verifier.YEAR)
+        {
+            if (!char.IsDigit(addedChar))
+                return '\0';
+        }
+
+        return addedChar;
     }
 
     public string GetText()
@@ -58,6 +74,6 @@ public class ItemAdInputField : MonoBehaviour
     {
         EMAIL = 1,
         MONTH = 2,
-        LENGTH = 3
+        YEAR = 3
     }
 }
