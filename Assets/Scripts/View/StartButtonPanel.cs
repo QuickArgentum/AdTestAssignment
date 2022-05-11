@@ -7,6 +7,7 @@ public class StartButtonPanel : Singleton<StartButtonPanel>
 {
     public Button videoAdButton;
     public Button itemAdButton;
+    public Fader fader;
 
     public event EventHandler VideoAdClicked;
     public event EventHandler ItemAdClicked;
@@ -21,6 +22,8 @@ public class StartButtonPanel : Singleton<StartButtonPanel>
         {
             ItemAdClicked?.Invoke(this, null);
         });
+
+        fader.FadeIn();
     }
 
     public void Lock()

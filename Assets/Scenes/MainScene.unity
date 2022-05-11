@@ -289,6 +289,9 @@ GameObject:
   - component: {fileID: 61734189}
   - component: {fileID: 61734188}
   - component: {fileID: 61734187}
+  - component: {fileID: 61734192}
+  - component: {fileID: 61734191}
+  - component: {fileID: 61734190}
   m_Layer: 5
   m_Name: StartButtonPanel
   m_TagString: Untagged
@@ -331,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoAdButton: {fileID: 225270188}
   itemAdButton: {fileID: 1660890582}
+  fader: {fileID: 61734190}
 --- !u!114 &61734188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +373,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61734185}
   m_CullTransparentMesh: 1
+--- !u!114 &61734190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61734185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f14992a00844f1439f98fcd6ccd6c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 61734191}
+--- !u!111 &61734191
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61734185}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 74da69fecb39e254ea73316426ea0fdf, type: 2}
+  - {fileID: 7400000, guid: 6514c5a42ab85214c8ae36319f71ec88, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &61734192
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61734185}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &88970236
 GameObject:
   m_ObjectHideFlags: 0
