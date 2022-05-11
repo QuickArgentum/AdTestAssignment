@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class VideoAdLoader : Singleton<VideoAdLoader>
 {
     [TextArea]
+    [Tooltip("The URL to get the video ad data from")]
     public string url;
 
     public void LoadAd(Action<VideoAdInfo> success, Action<string> error)

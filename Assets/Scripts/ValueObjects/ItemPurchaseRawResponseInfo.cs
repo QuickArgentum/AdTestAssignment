@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Stores JSON response from purchase item request
+/// </summary>
 [Serializable]
 public class ItemPurchaseRawResponseInfo
 {

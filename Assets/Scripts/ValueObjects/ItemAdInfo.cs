@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Stores information about an item advertisement
+/// </summary>
 public class ItemAdInfo
 {
     public string title;

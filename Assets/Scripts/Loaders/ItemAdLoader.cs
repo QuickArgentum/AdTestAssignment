@@ -7,8 +7,10 @@ using UnityEngine.Networking;
 public class ItemAdLoader : Singleton<ItemAdLoader>
 {
     [TextArea]
+    [Tooltip("The URL to load item ad data from")]
     public string adUrl;
     [TextArea]
+    [Tooltip("The URL to send the user data from purchase form to purchase an item")]
     public string purchaseUrl;
 
     public void LoadAd(Action<ItemAdInfo> success, Action<string> error)

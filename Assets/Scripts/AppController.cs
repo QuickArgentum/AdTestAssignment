@@ -39,7 +39,7 @@ public class AppController : Singleton<AppController>
         };
     }
 
-    public void PurchaseItem(ItemAdPurchaseInfo data)
+    private void PurchaseItem(ItemAdPurchaseInfo data)
     {
         Lock();
         ItemAdLoader.Instance.PurchaseItem
@@ -59,7 +59,7 @@ public class AppController : Singleton<AppController>
         );
     }
 
-    public void PlayVideoAd()
+    private void PlayVideoAd()
     {
         Lock();
         VideoAdLoader.Instance.LoadAd
@@ -75,7 +75,7 @@ public class AppController : Singleton<AppController>
         );
     }
 
-    public void PlayItemAd()
+    private void PlayItemAd()
     {
         Lock();
         ItemAdLoader.Instance.LoadAd
