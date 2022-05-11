@@ -8,12 +8,14 @@ public class VideoAdLoader : Singleton<VideoAdLoader>
     [TextArea]
     public string url;
 
-    public void LoadAd(Action<VideoAdInfo> success, Action<string> error) {
+    public void LoadAd(Action<VideoAdInfo> success, Action<string> error)
+    {
         StartCoroutine(RunRequest(success, error));
     }
 
     private IEnumerator RunRequest(Action<VideoAdInfo> success, Action<string> error)
     {
+        // Get the video ad info
         UnityWebRequest uwr = UnityWebRequest.Get(url);
         yield return uwr.SendWebRequest();
 
@@ -32,6 +34,8 @@ public class VideoAdLoader : Singleton<VideoAdLoader>
             success(VideoAdInfo.FromXML(uwr.downloadHandler.text));
         }
         else
+        {
             error(uwr.error);
+        }
     }
 }
