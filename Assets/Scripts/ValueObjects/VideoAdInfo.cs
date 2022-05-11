@@ -1,5 +1,8 @@
 ﻿using System.Xml;
 
+/// <summary>
+/// Stores information about a video advertisement
+/// </summary>
 public class VideoAdInfo
 {
     public string url;

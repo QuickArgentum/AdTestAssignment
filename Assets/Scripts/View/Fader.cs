@@ -7,6 +7,7 @@ public class Fader : MonoBehaviour
 {
     public event EventHandler FadeOutCompleted;
 
+    [Header("Animates fade in/out transitions")]
     public Animation anim;
 
     private float fadeOutTime;

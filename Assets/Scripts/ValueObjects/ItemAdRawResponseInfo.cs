@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Stores JSON response from item ad request
+/// </summary>
 [Serializable]
 public class ItemAdRawResponseInfo 
 {

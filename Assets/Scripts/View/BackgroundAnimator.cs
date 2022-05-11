@@ -5,12 +5,17 @@ public class BackgroundAnimator : MonoBehaviour
 {
     public Image stator;
     public Image rotor;
+    [Tooltip("How quickly the rainbow color cycle animates")]
     public float colorSpeed;
+    [Tooltip("How quickly the star rotor spins")]
     public float rotorSpeed;
+    [Tooltip("Background's HSV color saturation")]
     [Range(0, 1)]
     public float saturation;
+    [Tooltip("Background's HSV color value")]
     [Range(0, 1)]
     public float value;
+    [Tooltip("This value will be added to the background's color saturation to get the rotor's saturation")]
     [Range(-1, 1)]
     public float rotorSaturationMod;
 
